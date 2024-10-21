@@ -27,8 +27,6 @@
 
 ## For testing import postman collection TestTask.postman_collection.json 
 
- ## API Endpoints
-  
 ## API Endpoints
 ### GET /api/users
 - Fetches a list of all users.
