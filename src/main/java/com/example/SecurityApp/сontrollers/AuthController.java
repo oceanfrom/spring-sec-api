@@ -1,4 +1,4 @@
-package com.example.SecurityApp.Controllers;
+package com.example.SecurityApp.сontrollers;
 
 import com.example.SecurityApp.dto.AuthenticationDTO;
 import com.example.SecurityApp.dto.PersonDTO;

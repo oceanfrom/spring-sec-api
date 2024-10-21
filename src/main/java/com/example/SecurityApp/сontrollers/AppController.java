@@ -1,4 +1,4 @@
-package com.example.SecurityApp.Controllers;
+package com.example.SecurityApp.сontrollers;
 
 import com.example.SecurityApp.models.Person;
 import com.example.SecurityApp.services.PeopleService;
