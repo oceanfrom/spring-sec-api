@@ -72,7 +72,7 @@
   
 ### Error Handling
  - If the login credentials are invalid, an InvalidLoginException is thrown with a message:
-- :
+- Response:
   ```json
   {
    "error": "Invalid username or password"
