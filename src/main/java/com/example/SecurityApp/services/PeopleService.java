@@ -12,28 +12,15 @@ import java.util.Optional;
 
 @Service
 public class PeopleService {
-    private final PasswordEncoder passwordEncoder;
     private final PeopleRepository peopleRepository;
 
     @Autowired
-    public PeopleService(PasswordEncoder passwordEncoder, PeopleRepository peopleRepository) {
-        this.passwordEncoder = passwordEncoder;
+    public PeopleService(PeopleRepository peopleRepository) {
         this.peopleRepository = peopleRepository;
-    }
-
-    public void addPerson(Person person) {
-        String password = passwordEncoder.encode(person.getPassword());
-        person.setPassword(password);
-        peopleRepository.save(person);
     }
 
     public List<Person> findAll() {
         return peopleRepository.findAll();
-    }
-
-    public Person findOne(int id) {
-        return peopleRepository.findById(id)
-                .orElseThrow(() -> new PersonNotFoundException("Person not found with id: " + id));
     }
 
     public Optional<Person> findByUsername(String username) {
@@ -46,7 +33,6 @@ public class PeopleService {
         }
         peopleRepository.deleteById(id);
     }
-
 
     public boolean personExists(String username) {
         return findByUsername(username).isPresent();
