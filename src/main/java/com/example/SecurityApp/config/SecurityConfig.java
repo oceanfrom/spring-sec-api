@@ -39,8 +39,6 @@ public class SecurityConfig {
         return provider;
     }
 
-
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
@@ -51,10 +49,6 @@ public class SecurityConfig {
                         .loginPage("/auth/login")
                         .loginProcessingUrl("/login")
                         .failureUrl("/auth/login?error=true")
-                        .permitAll())
-                .logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/auth/login?logout=true")
                         .permitAll())
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
