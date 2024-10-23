@@ -36,25 +36,22 @@ public class AuthController {
         this.peopleService = peopleService;
     }
 
-
     @PostMapping("/register")
     public Map<String, String> performRegistration(@RequestBody @Valid PersonDTO personDTO,
                                                    BindingResult bindingResult) {
-
-        Person person = convertToPersonDTO(personDTO);
         if (bindingResult.hasErrors()) {
             return Map.of("message", "Error");
         }
+
+        Person person = convertToPerson(personDTO);
 
         if (peopleService.personExists(person.getUsername())) {
             throw new PersonAlreadyExistsException("User already exists with username: " + person.getUsername());
         }
 
         registrationService.register(person);
-
         return Map.of("message", "User registered successfully");
     }
-
 
     @PostMapping("/login")
     public Map<String, String> performLogin(@RequestBody AuthenticationDTO authenticationDTO) {
@@ -70,9 +67,7 @@ public class AuthController {
         return Map.of("jwt-token", token);
     }
 
-
-    public Person convertToPersonDTO(PersonDTO personDTO) {
+    private Person convertToPerson(PersonDTO personDTO) {
         return modelMapper.map(personDTO, Person.class);
     }
-
 }

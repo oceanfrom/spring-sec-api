@@ -3,14 +3,12 @@ package com.example.SecurityApp.services;
 import com.example.SecurityApp.models.Person;
 import com.example.SecurityApp.repositories.PeopleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class RegistrationService {
-    private Person person;
     private final PasswordEncoder passwordEncoder;
     private final PeopleRepository peopleRepository;
 
