@@ -12,10 +12,12 @@ import java.util.Optional;
 
 @Service
 public class PeopleService {
+    private final PasswordEncoder passwordEncoder;
     private final PeopleRepository peopleRepository;
 
     @Autowired
-    public PeopleService(PeopleRepository peopleRepository) {
+    public PeopleService(PasswordEncoder passwordEncoder, PeopleRepository peopleRepository) {
+        this.passwordEncoder = passwordEncoder;
         this.peopleRepository = peopleRepository;
     }
 
@@ -25,6 +27,15 @@ public class PeopleService {
 
     public Optional<Person> findByUsername(String username) {
         return peopleRepository.findByUsername(username);
+    }
+
+    public void updatePerson(Person person) {
+        person.setPassword(passwordEncoder.encode(person.getPassword()));
+        peopleRepository.save(person);
+    }
+
+    public Optional<Person> findById(int id) {
+        return peopleRepository.findById(id);
     }
 
     public void deletePerson(int id) {
