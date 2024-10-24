@@ -79,6 +79,11 @@
   }
 
 
+### PUT /api/users/{id}
+- Description: Updates a user's details by their ID.
+- Authorization: Requires ROLE_ADMIN.
+- Request Body: Expects a JSON object of PersonDTO with valid fields.
+  
 
 ### DELETE /api/users/{id}
 - Description: Deletes a user by their ID.
@@ -93,34 +98,13 @@
 
 ### Error Handling
 - If the user is not found, a PersonNotFoundException will be thrown with a message:
-  ```json
+ ```json
 {
   "error": "User not found",
   "status": 404
 }
 
-### PUT /api/users/{id}
-- Description: Updates a user's details by their ID.
-- Authorization: Requires ROLE_ADMIN.
-- Request Body: Expects a JSON object of PersonDTO with valid fields.
-- Response
-  ```json
-{
-  "message": "User updated successfully"
-}
-- Validation Errors
-  ```json
-{
-  "message": "Validation failed",
-  "status": 400
-}
 
-Error Handling
-- If the user is not found, a PersonNotFoundException will be thrown with a message:
-  ```json
-{
-  "error": "User not found",
-  "status": 404
-}
+
 
 
